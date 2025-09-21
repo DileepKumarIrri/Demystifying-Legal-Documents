@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Generative AI for Demystifying Legal Documents</h1>
+                    <p>Simplify complex legal documents into clear, accessible guidance, empowering users to make informed decisions.</p>
+                </div>
+                <div class="header-image">
+                    <i class="fas fa-book-open fa-5x"></i>
+                    <i class="fas fa-search fa-3x search-icon"></i>
+                    <i class="fas fa-cog fa-3x cog-icon"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-sections">
+            <div class="card upload-card disabled-card">
+                <div class="card-header">
+                    <span class="step-number">1.</span> Upload Your Document
+                </div>
+                <div class="card-body">
+                    <div class="disabled-overlay">
+                        <a href="{{ url_for('index') }}" class="upload-another-link">Upload Another Document</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card summary-card {% if not error %}active-card{% else %}disabled-card{% endif %}">
+                <div class="card-header">
+                    <span class="step-number">2.</span> AI-Powered Summary
+                </div>
+                <div class="card-body">
+                    {% if error %}
+                        <p class="error-message">{{ error }}</p>
+                    {% else %}
+                        <p class="analysis-for">Analysis for: <span class="document-name">{{ filename }}</span></p>
+                        <div class="summary-content">
+                            {% if summary %}
+                                {{ summary | safe }}
+                            {% else %}
+                                <p>No summary generated. Please try uploading the document again.</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card chat-card {% if not error %}active-card{% else %}disabled-card{% endif %}">
+                <div class="card-header">
+                    <span class="step-number">3.</span> Chat with Your Document
+                </div>
+                <div class="card-body chat-body">
+                    <div class="chat-messages">
+                        {% if user_query and chat_response %}
+                            <div class="message user-message">
+                                <p>{{ user_query }}</p>
+                            </div>
+                            <div class="message ai-message">
+                                <p>{{ chat_response | safe }}</p>
+                            </div>
+                        {% endif %}
+                        <!-- Placeholder for more messages in a real AJAX scenario -->
+                    </div>
+                    {% if not error %}
+                        <form action="{{ url_for('chat') }}" method="POST" class="chat-form">
+                            <input type="text" name="user_query" placeholder="Ask a follow question..." required class="chat-input">
+                            <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    {% else %}
+                        <div class="disabled-overlay">Cannot chat due to previous error.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <span>Powered by Google Cloud AI</span>
+            <span>© 2024 Legal AI Demystifier</span>
+        </footer>
+    </div>
+</body>
+</html>

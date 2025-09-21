@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal AI Demystifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Generative AI for Demystifying Legal Documents</h1>
+                    <p>Simplify complex legal documents into clear, accessible guidance, empowering users to make informed decisions.</p>
+                </div>
+                <div class="header-image">
+                    <i class="fas fa-book-open fa-5x"></i>
+                    <i class="fas fa-search fa-3x search-icon"></i>
+                    <i class="fas fa-cog fa-3x cog-icon"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-sections">
+            <div class="card upload-card active-card">
+                <div class="card-header">
+                    <span class="step-number">1.</span> Upload Your Document
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                        <div class="upload-area">
+                            <i class="fas fa-cloud-upload-alt fa-5x"></i>
+                            <input type="file" name="document" id="documentInput" accept=".pdf,.txt,.doc,.docx" hidden required>
+                            <label for="documentInput" class="upload-button">Upload PDF, DOCX, or TXT</label>
+                            <span class="file-name-display" id="fileNameDisplay">No file chosen</span>
+                        </div>
+                        <div class="supported-formats">
+                            Supported formats: PDF, DOCX, TXT. Max size: 16MB
+                        </div>
+                        <button type="submit" class="analyze-button" disabled>Analyze Document</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card summary-card disabled-card">
+                <div class="card-header">
+                    <span class="step-number">2.</span> AI-Powered Summary
+                </div>
+                <div class="card-body">
+                    <div class="disabled-overlay">Upload a document to see the summary.</div>
+                </div>
+            </div>
+            <div class="card chat-card disabled-card">
+                <div class="card-header">
+                    <span class="step-number">3.</span> Chat with Your Document
+                </div>
+                <div class="card-body">
+                    <div class="disabled-overlay">Summary must be generated first.</div>
+                </div>
+            </div>
+        </main>
+
+        <div id="loadingOverlay" style="display:none;">
+            <div class="loading-content">
+                <i class="fas fa-spinner fa-spin fa-3x"></i>
+                <p>Analyzing your document...</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <span>Made with ❤️ by Hackthon Hackers</span>
+            <span>© 2025 Legal AI Demystifier</span>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('documentInput').addEventListener('change', function() {
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            const analyzeButton = document.querySelector('.analyze-button');
+            if (this.files && this.files.length > 0) {
+                fileNameDisplay.textContent = this.files[0].name;
+                analyzeButton.disabled = false;
+            } else {
+                fileNameDisplay.textContent = 'No file chosen';
+                analyzeButton.disabled = true;
+            }
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

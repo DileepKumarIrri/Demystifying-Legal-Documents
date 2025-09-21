@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+    --primary-blue: #3E82F7;
+    --dark-blue: #1C3879;
+    --light-blue-bg: #E7F0FE;
+    --card-bg: #FFFFFF;
+    --border-color: #E0E0E0;
+    --text-dark: #333333;
+    --text-medium: #666666;
+    --text-light: #999999;
+    --summary-bg: #E9F7EF;
+    --summary-border: #28A745;
+    --chat-user-bg: #E7F0FE;
+    --chat-ai-bg: #F0F4F8;
+    --disabled-overlay-bg: rgba(255, 255, 255, 0.7);
+    --border-radius: 8px;
+    --box-shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-blue-bg);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top to prevent vertical centering issues on shorter content */
+    min-height: 100vh;
+    padding: 20px; /* Add some padding around the whole container */
+    box-sizing: border-box;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px; /* Max width for the entire application */
+    background: linear-gradient(135deg, #f0f8ff, #e0f2f7); /* Soft gradient background */
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Important for border radius on child elements */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+.header {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow-light);
+    border-radius: var(--border-radius) var(--border-radius) 0 0; /* Rounded top corners */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header-text h1 {
+    font-size: 2.2em;
+    color: var(--dark-blue);
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.header-text p {
+    font-size: 1em;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+.header-image {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-blue);
+}
+
+.header-image .fa-book-open {
+    color: var(--primary-blue);
+    z-index: 1;
+}
+
+.header-image .search-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #4CAF50; /* Greenish search icon */
+    transform: rotate(15deg);
+    opacity: 0.8;
+}
+
+.header-image .cog-icon {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: #FFC107; /* Yellowish cog icon */
+    transform: rotate(-15deg);
+    opacity: 0.8;
+}
+
+
+/* Content Sections Layout */
+.content-sections {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px 20px 20px; /* Padding for the cards themselves */
+    flex-grow: 1; /* Allow content sections to take available space */
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    flex: 1; /* Distribute space evenly */
+    display: flex;
+    flex-direction: column;
+    min-height: 400px; /* Minimum height for cards */
+    position: relative; /* For disabled overlay */
+}
+
+.card-header {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.card-header .step-number {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling for content if it overflows */
+    position: relative;
+}
+
+/* Disabled Card Overlay */
+.disabled-card .disabled-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--disabled-overlay-bg);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-radius: 0 0 var(--border-radius) var(--border-radius); /* Apply to body section */
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+}
+
+.disabled-card .card-header {
+    background-color: #8C99A8; /* Lighter blue for disabled header */
+}
+
+.disabled-card .upload-another-link {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.disabled-card .upload-another-link:hover {
+    background-color: var(--dark-blue);
+}
+
+/* Upload Card Specifics */
+.upload-card .upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.upload-card .upload-area:hover {
+    border-color: var(--primary-blue);
+}
+
+.upload-card .upload-area .fa-cloud-upload-alt {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.upload-card .upload-button {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-card .upload-button:hover {
+    background-color: var(--dark-blue);
+}
+
+.upload-card .file-name-display {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--text-medium);
+}
+
+.upload-card .supported-formats {
+    font-size: 0.8em;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 15px;
+}
+
+.upload-card .analyze-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-card .analyze-button:hover:not(:disabled) {
+    background-color: var(--dark-blue);
+}
+
+.upload-card .analyze-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+/* Summary Card Specifics */
+.summary-card .analysis-for {
+    font-size: 0.9em;
+    color: var(--text-medium);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.summary-card .document-name {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* Make summary content scrollable */
+.summary-card .summary-content {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.summary-card .summary-content {
+    background-color: var(--summary-bg);
+    border-left: 5px solid var(--summary-border);
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--text-dark);
+}
+
+.summary-card .summary-content p {
+    margin: 0 0 10px 0;
+}
+.summary-card .summary-content strong {
+    color: var(--dark-blue);
+}
+.summary-card .summary-content ul,
+.summary-card .summary-content ol {
+    margin-left: 20px;
+    padding: 0;
+}
+.summary-card .summary-content li {
+    margin-bottom: 5px;
+}
+
+.error-message {
+    color: #dc3545; /* Bootstrap danger red */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* Chat Card Specifics */
+.chat-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push form to bottom */
+}
+
+/* Make chat messages scrollable */
+.chat-body, .chat-messages {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px; /* For scrollbar spacing */
+    max-height: 250px; /* Limit chat history height */
+    margin-bottom: 15px;
+}
+
+.chat-messages .message {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    max-width: 80%;
+    word-wrap: break-word; /* Ensure long words wrap */
+}
+
+.chat-messages .user-message {
+    background-color: var(--chat-user-bg);
+    margin-left: auto; /* Align to right */
+    border-bottom-right-radius: 2px;
+}
+
+.chat-messages .ai-message {
+    background-color: var(--chat-ai-bg);
+    margin-right: auto; /* Align to left */
+    border-bottom-left-radius: 2px;
+}
+
+.chat-form {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px; /* Space above the form */
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.95em;
+}
+
+.send-button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-button:hover {
+    background-color: var(--dark-blue);
+}
+
+.send-button .fas {
+    font-size: 1.1em;
+}
+
+
+/* Footer Styling */
+.footer {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    margin-top: 20px; /* Space above footer */
+}
+
+/* Loading Overlay */
+#loadingOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loading-content {
+    text-align: center;
+    color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .content-sections {
+        flex-direction: column;
+    }
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-image {
+        margin-top: 20px;
+    }
+    .card {
+        min-height: auto; /* Allow height to adjust */
+    }
+}
+
+@media (max-width: 600px) {
+    .header-text h1 {
+        font-size: 1.8em;
+    }
+    .main-container {
+        padding: 10px;
+    }
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+/* Make chat content scrollable */
+.chat-card .chat-content {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}

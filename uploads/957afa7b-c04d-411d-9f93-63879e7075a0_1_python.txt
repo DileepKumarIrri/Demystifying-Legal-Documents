@@ -1,0 +1,191 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------
+=======================
+Strings:
+=======================
+ord()        : Returns the ASCII value of a character -----------------> ord('a')  # 97  
+lower()      : Converts string to lowercase ---------------------------> "hello".lower()  # "hello"  
+upper()      : Converts string to uppercase ---------------------------> "hello".upper()  # "HELLO"  
+replace()    : Replaces substring with another string -----------------> "hello world".replace("world", "Python")  # "hello Python"  
+split()      : Splits the string by a delimiter (default is space) ----> "hello world".split()  # ['hello', 'world']  
+strip()      : Removes leading and trailing whitespace ----------------> "  hello  ".strip()  # "hello"  
+
+# String checks:
+isal()       : Checks if string consists only of letters -------------> "abc".isalpha()  # True  
+isnum()      : Checks if string consists only of numbers -------------> "123".isnumeric()  # True  
+isalnum()    : Checks if string consists of letters and numbers ------> "abc123".isalnum()  # True  
+islower()    : Checks if string is in lowercase ----------------------> "hello".islower()  # True  
+isupper()    : Checks if string is in uppercase ----------------------> "HELLO".isupper()  # True  
+
+startswith() : Checks if string starts with a prefix -----------------> "hello".startswith("he")  # True  
+endswith()   : Checks if string ends with a suffix -------------------> "hello".endswith("lo")  # True  
+
+=======================
+Mathematical functions:
+=======================
+abs(x)         : Absolute value -------------------------------------> abs(-7)            # 7  
+round(x, nd)   : Rounding with decimals -----------------------------> round(3.1415, 2)   # 3.14  
+math.floor(x)  : Round down to nearest integer -----------------------> math.floor(5.9)    # 5  
+math.ceil(x)   : Round up to nearest integer -------------------------> math.ceil(5.1)     # 6  
+min(a, b, ...) : Smallest value --------------------------------------> min(3, 1, 9)       # 1  
+max(a, b, ...) : Largest value ---------------------------------------> max(3, 1, 9)       # 9  
+
+math.pow(x, y) : x to the power y (float) ----------------------------> math.pow(2, 3)     # 8.0  
+math.sqrt(x)   : Square root of x ------------------------------------> math.sqrt(25)      # 5.0  
+math.exp(x)    : e raised to power x ---------------------------------> math.exp(1)        # 2.718...
+
+math.log(x)    : Natural log (base e) --------------------------------> math.log(10)       # ~2.302  
+math.log2(x)   : Log base 2 ------------------------------------------> math.log2(8)       # 3.0  
+math.log10(x)  : Log base 10 -----------------------------------------> math.log10(100)    # 2.0 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+=======================
+List FUNCTIONS
+=======================
+List is a collection datatype in python where it allows
+- mutable, ordered, allowed duplicates.
+
+To initialize list with n elements: list=[0]*n
+Adding elements:
+	append(x)           : Add item to the end of the list
+	extend(iterable)    : Extend list by appending elements from iterable (or) list1 + list2
+	insert(i, x)        : Insert item at given index
+
+Removing elements:
+	remove(x)           : Remove first occurrence of value x
+	pop([i])            : Remove and return item at index i (default is last item)
+	clear()             : Remove all items in the list
+
+Update elements:
+	list[i] = value     : Replace the element at index i with new value
+
+Accessing elements:
+	Indices:
+		[start:stop+1:step]         => Slicing
+		[0:length-1] or [-length:-1]=> Access using positive/negative indexing
+		[start_index:]              => From start_index to the end
+		[::-1]                      => Reverse the list using step size -1
+
+	Looping:
+		🔸 Iterating through elements:
+			for item in my_list:
+				print(item)
+
+		🔸 Iterating by index:
+			for i in range(len(my_list)):
+				print(my_list[i])
+
+		🔸 Iterating with index and value using enumerate():
+			for i, val in enumerate(my_list):
+				print(f"Index {i}: Value {val}")
+
+	List comprehension:
+				newlist = [expression for item in list if condition]
+				Example: squares = [x**2 for x in numbers if x % 2 == 0]
+Exception functions:
+	sort()
+	reverse()
+=======================
+SET FUNCTIONS
+=======================
+Set is a collection datatype in python where it allows
+- unordered, Immutable, duplicates not allowed.
+
+
+Adding Elements:
+- add(x): Add element x to the set
+- update(iterable): Add multiple elements from iterable
+
+Removing Elements:
+- remove(x): Remove element x; KeyError if not found
+- discard(x): Remove x if present (no error if not found)
+- pop(): Remove and return an arbitrary element
+- clear(): Remove all elements
+
+Accessing / Checking:
+- x in set: Check if x is a member of the set
+
+Set Operations:
+- union(other): Return union of sets
+- intersection(other): Return intersection
+- difference(other): Return elements in self but not in other
+- symmetric_difference(other): Return elements in either but not both
+
+Checks:
+- issubset(other): Check if set is a subset
+- issuperset(other): Check if set is a superset
+- isdisjoint(other): Check if sets have no common elements
+
+=======================
+DICTIONARY FUNCTIONS{}
+=======================
+Dictionary is a collection datatype in python where it allows		- ordered, mutable, duplicates not allowed .
+
+Adding / Updating:
+- dictionary[key]=value
+  dictionary.update({key1:value1},{key2:value2})
+- dictionary[key]=updated_value
+  dictionary.update({key1:updated_value1},{key2:updated_value2})
+
+Removing Elements:
+- pop(key): Remove key and return value
+- popitem(): Remove and return last inserted key-value pair
+- clear(): Remove all items
+
+Accessing Elements:
+- keys(): View all keys						for key in dictionary.keys():		print(key)
+- values(): View all values					for value in dictionary.values():	print(value)
+- items(): View all key-value pairs				for key,value in thisdict.items():	print("Key:",key,"Value:",value) 
+------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+
+Core Python
+Data Types, Variables, Input & Outputs
+Operators, Conditional Statements, Iterative Statements
+Functions, Lambda Functions, Decorators, Generators
+Object-Oriented Programming (OOPs)
+Class, Objects
+Concepts: Inheritance, Polymorphism, Abstraction, Encapsulation
+Advanced Concepts
+File Handling, Exception Handling, Logging
+Multithreading
+Python Libraries
+Numpy, Pandas, Matplotlib, Excel
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1'

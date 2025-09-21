@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with Your Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Chat with Your Document</h1>
+                <a href="{{ url_for('index') }}">Back to Home</a>
+            </div>
+        </header>
+        <main class="content-sections">
+            <div class="card chat-card active-card">
+                <div class="card-header">
+                    <h2>Ask a follow-up question</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('chat_page') }}" id="chatForm">
+                        <input type="text" name="user_query" placeholder="Type your question..." required>
+                        <button type="submit">Ask</button>
+                    </form>
+                    <div class="chat-content">
+                        {% if chat_response %}
+                            {{ chat_response|safe }}
+                        {% endif %}
+                        {% if error %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <span>© 2025 Legal AI Demystifier</span>
+        </footer>
+    </div>
+    <div id="loadingOverlay" style="display:none;">
+        <div class="loading-content">
+            <i class="fas fa-spinner fa-spin fa-3x"></i>
+            <p>Getting your answer...</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatForm = document.getElementById('chatForm');
+            if (chatForm) {
+                chatForm.addEventListener('submit', function() {
+                    document.getElementById('loadingOverlay').style.display = 'flex';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
